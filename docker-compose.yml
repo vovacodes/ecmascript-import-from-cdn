@@ -1,0 +1,20 @@
+version: "3"
+services:
+  search-index-builder:
+    build: "./search-index-builder"
+    restart: on-failure
+
+  names-search-service:
+    build: "./names-search-service"
+    ports:
+    - 8080:8080
+    restart: on-failure
+
+  redis:
+    image: "redis:alpine"
+    volumes:
+    - redis-data:/data
+    restart: on-failure
+
+volumes:
+  redis-data:

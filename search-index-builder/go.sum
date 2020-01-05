@@ -1,0 +1,4 @@
+github.com/go-redis/redis v6.15.6+incompatible h1:H9evprGPLI8+ci7fxQx6WNZHJSb7be8FqJQRhdQZ5Sg=
+github.com/go-redis/redis v6.15.6+incompatible/go.mod h1:NAIEuMOZ/fxfXJIrKDQDz8wamY7mA7PouImQ2Jvg6kA=
+github.com/leesper/couchdb-golang v1.2.1 h1:FqSaTxxT2mVRLbxGQVkZakRRoSzWhPmV8UEKYjA/GWc=
+github.com/leesper/couchdb-golang v1.2.1/go.mod h1:OU3FDAM3mazHx15oi8Hm+egTMneBUqepwnh0LuBSH54=
