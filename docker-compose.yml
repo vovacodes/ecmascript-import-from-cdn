@@ -3,18 +3,33 @@ services:
   search-index-builder:
     build: "./search-index-builder"
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "2"
 
   names-search-service:
     build: "./names-search-service"
     ports:
     - 8080:8080
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "2"
 
   redis:
     image: "redis:alpine"
     volumes:
     - redis-data:/data
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "2"
 
 volumes:
   redis-data:

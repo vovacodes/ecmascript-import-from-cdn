@@ -1,10 +1,9 @@
 import { languages, ExtensionContext } from "vscode";
-import { ImportCompletionProvider } from "./ImportCompletionProvider";
+import { importCompletionProvider } from "./ImportCompletionProvider";
 
 export function activate(context: ExtensionContext) {
   console.log('"vscode-import-autocomplete" extension is now active!');
 
-  const provider = new ImportCompletionProvider();
   const triggerCharacters = [
     '"',
     "'",
@@ -32,7 +31,7 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     languages.registerCompletionItemProvider(
       selector,
-      provider,
+      importCompletionProvider,
       ...triggerCharacters
     )
   );

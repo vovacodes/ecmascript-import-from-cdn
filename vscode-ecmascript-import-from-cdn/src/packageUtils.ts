@@ -3,7 +3,7 @@
  * https://github.com/mjackson/unpkg/blob/master/modules/utils/npm.js
  */
 import { IncomingMessage } from "http";
-import LRUCache from "lru-cache";
+import * as LRUCache from "lru-cache";
 import fetch from "node-fetch";
 import { rcompare } from "semver";
 import { chain } from "stream-chain";

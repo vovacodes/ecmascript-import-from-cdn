@@ -22,7 +22,7 @@ export type CompletionState = {
   cursorLine: number;
 };
 
-export class ImportCompletionProvider implements CompletionItemProvider {
+class ImportCompletionProvider implements CompletionItemProvider {
   public async provideCompletionItems(
     document: TextDocument,
     position: Position,
@@ -40,6 +40,14 @@ export class ImportCompletionProvider implements CompletionItemProvider {
     }
 
     return this.provide(completionState);
+  }
+
+  // TODO: resolve additional details
+  public async resolveCompletionItem(
+    item: CompletionItem,
+    token: CancellationToken
+  ): Promise<CompletionItem> {
+    return item;
   }
 
   shouldProvide(state: CompletionState) {
@@ -151,6 +159,8 @@ export class ImportCompletionProvider implements CompletionItemProvider {
     return new CompletionList([], true);
   }
 }
+
+export const importCompletionProvider = new ImportCompletionProvider();
 
 function isImport(currentLineText: string, position: number): boolean {
   const isImport = currentLineText.substring(0, 6) === "import";
