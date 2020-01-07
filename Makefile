@@ -1,4 +1,7 @@
 dev:
 	docker-compose up --build
 
-PHONY: dev
+start:
+	docker-compose up --build --detach
+
+PHONY: dev start
