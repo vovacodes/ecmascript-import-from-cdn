@@ -1,17 +1,32 @@
 version: "3"
 services:
   proxy:
-    image: abiosoft/caddy:no-stats
-    restart: on-failure
-    ports:
-      - 80:80
-      - 433:433
-    environment:
-      - ACME_AGREE=true
+    image: umputun/nginx-le:latest
+    hostname: proxy
+    container_name: proxy
+    restart: always
+    depends_on:
+      - "names-search-service"
+
     volumes:
-      - ./proxy/Caddyfile:/etc/Caddyfile
-      # Caddy will save SSL certs here
-      - $HOME/.caddy:/root/.caddy
+      - ./proxy/ssl:/etc/nginx/ssl
+      - ./proxy/service.conf:/etc/nginx/service.conf
+    ports:
+      - "80:80"
+      - "443:443"
+
+    environment:
+      - TZ=Europe/Amsterdam
+      - LETSENCRYPT=true
+      - LE_EMAIL=vladimir.guguiev+import-plugin@gmail.com
+      - LE_FQDN=search.importcdn.com
+      #- SSL_CERT=le-crt.pem
+      #- SSL_KEY=le-key.pem
+      #- SSL_CHAIN_CERT=le-chain-crt.pem
+
+  names-search-service:
+    build: "./names-search-service"
+    restart: on-failure
     logging:
       driver: "json-file"
       options:
@@ -20,15 +35,6 @@ services:
 
   search-index-builder:
     build: "./search-index-builder"
-    restart: on-failure
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
-        max-file: "2"
-
-  names-search-service:
-    build: "./names-search-service"
     restart: on-failure
     logging:
       driver: "json-file"
