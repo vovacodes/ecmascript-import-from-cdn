@@ -26,6 +26,7 @@ services:
 
   names-search-service:
     build: "./names-search-service"
+    container_name: names-search-service
     restart: on-failure
     logging:
       driver: "json-file"
@@ -37,6 +38,7 @@ services:
 
   search-index-builder:
     build: "./search-index-builder"
+    container_name: search-index-builder
     restart: on-failure
     logging:
       driver: "json-file"
@@ -48,6 +50,7 @@ services:
 
   redis:
     image: "redis:alpine"
+    container_name: redis
     volumes:
     - redis-data:/data
     restart: on-failure
