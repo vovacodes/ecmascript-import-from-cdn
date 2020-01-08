@@ -4,14 +4,14 @@ services:
     image: abiosoft/caddy:no-stats
     restart: on-failure
     ports:
-    - 80:80
-    - 433:433
+      - 80:80
+      - 433:433
     environment:
-      ACME_AGREE=true
+      - ACME_AGREE=true
     volumes:
-    - ./proxy/Caddyfile:/etc/Caddyfile
-    # Caddy will save SSL certs here
-    - $HOME/.caddy:/root/.caddy
+      - ./proxy/Caddyfile:/etc/Caddyfile
+      # Caddy will save SSL certs here
+      - $HOME/.caddy:/root/.caddy
 
   search-index-builder:
     build: "./search-index-builder"
