@@ -2,13 +2,16 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/go-redis/redis"
 )
 
 var versionPrefix = "/v1/"
+var maxAge = 5 * time.Minute
 
 func main() {
 	log.Println("Starting names-search-service")
@@ -42,6 +45,7 @@ func handler(res http.ResponseWriter, req *http.Request) {
 	}
 
 	res.Header().Set("Content-Type", "application/json")
+	res.Header().Set("Cache-Control", fmt.Sprintf("max-age=%d", maxAge))
 	res.WriteHeader(http.StatusOK)
 	res.Write(serializedSuggestions)
 }
