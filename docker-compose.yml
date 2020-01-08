@@ -12,6 +12,11 @@ services:
       - ./proxy/Caddyfile:/etc/Caddyfile
       # Caddy will save SSL certs here
       - $HOME/.caddy:/root/.caddy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "2"
 
   search-index-builder:
     build: "./search-index-builder"
