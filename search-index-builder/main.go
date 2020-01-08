@@ -8,12 +8,14 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/go-redis/redis"
 )
 
 func main() {
+	log.Println(os.Getenv("TZ"))
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     "redis:6379",
 		Password: "",
