@@ -32,6 +32,8 @@ services:
       options:
         max-size: "50m"
         max-file: "2"
+    environment:
+      - TZ=Europe/Amsterdam
 
   search-index-builder:
     build: "./search-index-builder"
@@ -41,6 +43,8 @@ services:
       options:
         max-size: "50m"
         max-file: "2"
+    environment:
+      - TZ=Europe/Amsterdam
 
   redis:
     image: "redis:alpine"
@@ -52,6 +56,8 @@ services:
       options:
         max-size: "50m"
         max-file: "2"
+    environment:
+      - TZ=Europe/Amsterdam
 
 volumes:
   redis-data:
