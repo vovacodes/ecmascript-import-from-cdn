@@ -3,7 +3,7 @@ search.importcdn.com {
     proxy / http://names-search-service:8080 {
         transparent
     }
-    log /var/log/caddy/search.importcdn.com-access.log
-    errors /var/log/caddy/search.importcdn.com-error.log
+    log stdout
+    errors stdout
 }
 
