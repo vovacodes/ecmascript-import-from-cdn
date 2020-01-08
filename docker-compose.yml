@@ -6,6 +6,8 @@ services:
     ports:
     - 80:80
     - 433:433
+    environment:
+      ACME_AGREE=true
     volumes:
     - ./proxy/Caddyfile:/etc/Caddyfile
     # Caddy will save SSL certs here
