@@ -11,6 +11,6 @@ WORKDIR /search-index-builder
 COPY --from=build-golang /search-index-builder/search-index-builder .
 
 # Propagate the timezone setting
-ENV TZ=$TZ
+ENV TZ=Europe/Amsterdam
 
 ENTRYPOINT ["./search-index-builder"]
