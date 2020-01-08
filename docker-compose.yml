@@ -7,7 +7,7 @@ services:
     - 80:80
     - 433:433
     volumes:
-    - proxy/Caddyfile:/etc/Caddyfile
+    - ./proxy/Caddyfile:/etc/Caddyfile
     # Caddy will save SSL certs here
     - $HOME/.caddy:/root/.caddy
 
